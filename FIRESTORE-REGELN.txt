@@ -1,0 +1,18 @@
+// Inhalt für Firebase Console > Firestore Database > Rules.
+// Zugriff nur mit anonymer Firebase-Anmeldung und einer nicht erratbaren Raum-ID.
+// Achtung: JEDER mit einem gültigen Einladungslink kann die darin enthaltene
+// Sammlung lesen und verändern. Nicht für sensible Daten geeignet.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /rooms/{roomId}/recipes/{recipeId} {
+      allow read, write: if request.auth != null
+                         && roomId.matches('^[a-f0-9]{32}$');
+    }
+    match /rooms/{roomId}/shopping/{itemId} {
+      allow read, write: if request.auth != null
+                         && roomId.matches('^[a-f0-9]{32}$');
+    }
+  }
+}

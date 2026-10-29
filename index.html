@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f6f0">
+  <meta name="description" content="Euer gemeinsames Kochbuch – Rezepte, Favoriten und Einkaufsliste.">
+  <link rel="icon" type="image/png" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <title>Zusammen & lecker – Unser Kochbuch</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="brand" role="button" tabindex="0" id="brand-home" aria-label="Startseite">
+        <span class="brand-mark">✳</span>
+        <span class="brand-copy"><strong>zusammen <em>&</em> lecker</strong><small>UNSER KOCHBUCH</small></span>
+      </div>
+      <button class="sync-pill" id="sync-button" type="button" title="Synchronisierung und Teilen"><span id="sync-dot" class="status-dot"></span><span id="sync-label">Nur dieses Gerät</span><span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main id="main">
+      <section id="screen-recipes" class="screen active" aria-label="Rezepte">
+        <div class="intro-row">
+          <div><p class="eyebrow">VON UNS. FÜR UNS. ♡</p><h1>Was kochen<br><span>wir heute?</span></h1><p class="intro-copy">Unsere liebsten Rezepte, gesammelt an einem Ort.</p></div>
+          <div class="intro-illustration" aria-hidden="true"><span>🍲</span><i>♡</i></div>
+        </div>
+        <div class="feature-card" id="featured-recipe">
+          <div class="feature-details"><span class="feature-tag">★ UNSER ERSTES REZEPT</span><h2>Chicken Gyoza</h2><p>Dünner Teig, saftiges Hähnchen und ein herrlich knuspriger Boden.</p><button class="light-button" id="featured-open" type="button">Rezept entdecken <span>→</span></button></div>
+          <div class="feature-art" aria-hidden="true"><div class="gyoza-plate"><span>🥟</span><span>🥟</span><span>🥟</span></div></div>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">GUT ESSEN, GUT LEBEN</p><h2>Alle Rezepte <span class="count-label" id="recipe-count">1</span></h2></div><button class="circle-add" type="button" id="add-recipe" aria-label="Neues Rezept hinzufügen">+</button></div>
+        <label class="search-field"><span aria-hidden="true">⌕</span><input id="recipe-search" type="search" placeholder="Nach einem Rezept suchen …" autocomplete="off"></label>
+        <div id="category-tabs" class="category-tabs" role="group" aria-label="Rezeptfilter"></div>
+        <div id="recipe-grid" class="recipe-grid"></div>
+      </section>
+
+      <section id="screen-favorites" class="screen" aria-label="Favoriten">
+        <div class="page-head"><p class="eyebrow">IMMER WIEDER GUT</p><h1>Unsere <span>Lieblinge.</span></h1><p>Alles, was wir am liebsten noch einmal kochen.</p></div>
+        <div id="favorite-grid" class="recipe-grid"></div>
+      </section>
+
+      <section id="screen-shopping" class="screen" aria-label="Einkaufsliste">
+        <div class="page-head shopping-head"><p class="eyebrow">FÜR DEN NÄCHSTEN EINKAUF</p><h1>Alles auf<br><span>einem Zettel.</span></h1><p>Zusammen einkaufen, ohne etwas zu vergessen.</p></div>
+        <form id="shopping-form" class="shopping-entry"><input id="shopping-input" type="text" maxlength="150" autocomplete="off" placeholder="z. B. 2 Packungen Milch" required aria-label="Neuer Einkaufsartikel"><button class="add-item-button" type="submit" aria-label="Artikel hinzufügen">+</button></form>
+        <div class="shopping-bar"><span id="shopping-progress">Noch nichts auf der Liste</span><button class="text-button" type="button" id="clear-completed">Erledigte löschen</button></div>
+        <div class="shopping-list" id="shopping-list"></div>
+        <p class="mini-note">Tipp: Du kannst Zutaten direkt aus einem Rezept hierher übernehmen.</p>
+      </section>
+
+      <section id="screen-more" class="screen" aria-label="Mehr">
+        <div class="page-head"><p class="eyebrow">ZWEI KÖCHE, EINE SAMMLUNG</p><h1>Unser kleines <span>Zuhause.</span></h1><p>Teilen, sichern und gemeinsam kochen.</p></div>
+        <div class="settings-stack">
+          <div class="info-panel"><span class="panel-icon">♡</span><div><strong>Für uns beide</strong><p>Ein Ort für deine und Kathis Lieblingsrezepte.</p></div></div>
+          <div class="action-panel"><span class="panel-icon">↗</span><div><strong>Mit Kathi teilen</strong><p id="room-description">Aktuell auf diesem Gerät gespeichert.</p></div><button id="share-button" type="button">Öffnen</button></div>
+          <div class="action-panel"><span class="panel-icon">↓</span><div><strong>Rezepte sichern</strong><p>Alle Rezepte und Einkaufsartikel als Datei exportieren.</p></div><button id="export-button" type="button">Export</button></div>
+          <div class="action-panel"><span class="panel-icon">↑</span><div><strong>Sicherung importieren</strong><p>Vorher gesicherte Sammlung wiederherstellen.</p></div><button id="import-button" type="button">Import</button></div>
+          <input id="import-file" type="file" accept="application/json,.json" hidden>
+        </div>
+        <p class="footer-note">Mit Liebe gekocht. Von uns für uns. ♡</p>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Hauptnavigation">
+      <button class="nav-button selected" data-tab="recipes" type="button"><span class="nav-icon">♨</span><span>Rezepte</span></button>
+      <button class="nav-button" data-tab="favorites" type="button"><span class="nav-icon">♡</span><span>Favoriten</span></button>
+      <button class="nav-button" data-tab="shopping" type="button"><span class="nav-icon">▤</span><span>Einkauf</span></button>
+      <button class="nav-button" data-tab="more" type="button"><span class="nav-icon">☷</span><span>Mehr</span></button>
+    </nav>
+  </div>
+
+  <dialog id="recipe-dialog" class="sheet-dialog" aria-labelledby="detail-title"><div id="recipe-detail"></div></dialog>
+  <dialog id="editor-dialog" class="sheet-dialog" aria-labelledby="editor-title">
+    <form id="recipe-form" class="editor-form">
+      <div class="dialog-top"><span class="eyebrow">REZEPTSAMMLUNG</span><button type="button" class="close-button" data-close="editor-dialog" aria-label="Schließen">×</button></div>
+      <h2 id="editor-title">Neues Rezept</h2>
+      <input type="hidden" id="form-id">
+      <label>Wie heißt das Gericht?<input id="form-title" required maxlength="90" placeholder="z. B. Cremige Pilzpasta"></label>
+      <label>Kleine Beschreibung<input id="form-subtitle" maxlength="190" placeholder="Was macht es besonders lecker?"></label>
+      <div class="form-two"><label>Kategorie<select id="form-category"><option>Asiatisch</option><option>Pasta</option><option>Vegetarisch</option><option>Meal Prep</option><option>Schnell & einfach</option><option>Backen</option><option>Sonstiges</option></select></label><label>Zubereitung (Min.)<input id="form-time" type="number" min="1" max="1440" value="30" required></label></div>
+      <div class="form-two"><label>Menge für<input id="form-portions" type="number" min="1" max="1000" value="2" required></label><label>Einheit<select id="form-unit"><option value="Portionen">Portionen</option><option value="Stück">Stück</option><option value="Personen">Personen</option></select></label></div>
+      <label>Zutaten <small>(eine Zutat pro Zeile)</small><textarea id="form-ingredients" required rows="7" placeholder="250 g Mehl&#10;125 ml Wasser&#10;1 TL Salz"></textarea></label>
+      <label>Zubereitung <small>(ein Schritt pro Zeile)</small><textarea id="form-steps" required rows="7" placeholder="Zutaten vermischen&#10;Teig kneten und ruhen lassen&#10;... "></textarea></label>
+      <p class="hint">Mengen können später automatisch auf andere Portionen umgerechnet werden.</p>
+      <button type="submit" class="primary-button">Rezept speichern <span>→</span></button>
+    </form>
+  </dialog>
+  <dialog id="share-dialog" class="sheet-dialog" aria-labelledby="share-title"><div class="share-content"><div class="dialog-top"><span class="eyebrow">ZUSAMMEN KOCHEN</span><button type="button" class="close-button" data-close="share-dialog" aria-label="Schließen">×</button></div><h2 id="share-title">Gemeinsam schmeckt's besser.</h2><p id="share-message"></p><div id="share-link-wrap" class="share-link-wrap" hidden><input id="share-link" readonly aria-label="Einladungslink"><button id="copy-link" type="button">Kopieren</button></div><details id="join-details" class="join-details" hidden><summary>Einladung / Raum wechseln</summary><form id="join-room-form"><input type="text" id="join-room-input" placeholder="Einladungslink oder Raum-Code einfügen" aria-label="Einladungslink oder Raum-Code"><button type="submit">Beitreten</button></form></details><p class="hint" id="share-footnote"></p><button type="button" class="secondary-button" data-close="share-dialog">Verstanden</button></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="./firebase-config.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

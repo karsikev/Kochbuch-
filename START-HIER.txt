@@ -1,0 +1,80 @@
+ZUSAMMEN & LECKER – EUER GEMEINSAMES KOCHBUCH
+==========================================
+
+Diese App wurde für euch beide vorbereitet.
+Das erste Rezept (Chicken Gyoza) ist bereits eingetragen.
+
+WAS SCHON FUNKTIONIERT
+- Rezepte hinzufügen, bearbeiten, löschen und suchen
+- Kategorien und Favoriten
+- Mengen beim Öffnen eines Rezepts umrechnen
+- Alle Zutaten mit einem Klick zur Einkaufsliste hinzufügen
+- Gemeinsame Einkaufsliste abhaken (nach Cloud-Einrichtung)
+- JSON-Sicherung exportieren/importieren
+- Als App auf dem iPhone-Startbildschirm speichern (nach Veröffentlichung)
+
+WICHTIG: Die mitgelieferte App ist eine FUNKTIONIERENDE LOKALE VORSCHAU.
+Für die automatische Synchronisierung auf beiden Handys benötigt sie
+zusätzlich eine einmalige Firebase-Einrichtung und eine öffentliche HTTPS-URL.
+Die App ist NOCH NICHT von uns online veröffentlicht worden.
+
+A) FIREBASE EINMALIG EINRICHTEN
+1. Öffne https://console.firebase.google.com/
+2. Lege ein neues Projekt an, z. B. 'unser-kochbuch'.
+3. Füge dem Projekt eine Web-App hinzu (Symbol </>).
+4. Kopiere die Firebase-Konfiguration (firebaseConfig-Objekt).
+5. Öffne die mitgelieferte Datei 'firebase-config.js' in einem Texteditor.
+   Ersetze die letzte Zeile durch:
+
+   window.COOKBOOK_FIREBASE_CONFIG = {
+     apiKey: 'DEIN_API_KEY',
+     authDomain: 'DEIN-PROJEKT.firebaseapp.com',
+     projectId: 'DEIN-PROJEKT',
+     appId: 'DEINE_APP_ID'
+   };
+
+   Verwende die ECHTEN Werte aus deinem Firebase-Projekt.
+   Die dort angezeigte optionale storageBucket-/messagingSenderId-Angabe
+   kannst du ebenfalls mit einfügen.
+6. Unter Authentication > Sign-in method den Anbieter 'Anonymous' aktivieren.
+7. Unter Firestore Database eine Datenbank erstellen.
+8. Unter Firestore Database > Rules den Inhalt aus 'FIRESTORE-REGELN.txt'
+   einfügen und veröffentlichen.
+
+   Der Einladungslink ist der Zugangsschlüssel zur gemeinsamen Sammlung.
+   Teilt ihn nicht öffentlich. Firebase-Konfiguration ist kein Passwort;
+   der eigentliche Zugriff wird über Firestore-Regeln geregelt.
+
+B) APP ONLINE STELLEN
+1. Lade den fertig konfigurierten Projektordner bei
+   https://app.netlify.com/drop hoch.
+2. Wenn nötig: ZIP entpacken und den Ordner (mit index.html direkt darin)
+   hochladen. Ihr bekommt anschließend eine URL unter *.netlify.app.
+3. Öffne die URL: Bei erfolgreicher Cloud-Verbindung erscheint oben
+   'Gemeinsam live'.
+4. Tippe auf 'Gemeinsam live' > 'Kopieren' und schicke Kathi den Link.
+5. Kathi öffnet GENAU DIESEN Link, nicht nur die Startseiten-URL.
+   Danach seht ihr beide dieselbe Rezept- und Einkaufsliste.
+
+C) ALS APP AUF DEM IPHONE
+1. Website in Safari öffnen.
+2. Teilen > 'Zum Home-Bildschirm hinzufügen'.
+3. 'Als Web-App öffnen' aktivieren (falls angezeigt).
+4. Hinzufügen. Fertig!
+
+HINWEISE
+- Ohne Firebase speichert die App nur lokal im Browser des Geräts.
+  Solche lokalen Daten können beim Löschen von Websitedaten verloren gehen.
+- Exportiert bei wichtigen Änderungen gelegentlich eine JSON-Sicherung.
+- Euer gemeinsamer Raum hat eine zufällige, lange ID. Jeder mit dem
+  vollständigen Einladungslink kann Rezepte und Einkaufsartikel ändern.
+- Das ist ein kleiner privater Prototyp, kein hochsicheres Benutzerkontensystem.
+- Nutzt dafür keine sensiblen oder vertraulichen Informationen.
+
+VIEL SPASS BEIM KOCHEN! ♡
+
+FALLS EIN IPHONE NACH DER INSTALLATION EIN LEERES / ANDERES KOCHBUCH ÖFFNET:
+Tippe in der App auf 'Mehr' > 'Mit Kathi teilen' >
+'Einladung / Raum wechseln'. Füge den ursprünglichen Einladungslink ein
+und tippe auf 'Beitreten'. Das kann passieren, wenn Safari und die installierte
+Web-App getrennte Speicherdaten verwenden.
